@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using trabalho2.Domain;
-using trabalho2.Domain.Dtos.Request;
+using trabalho2.Domain.Usuarios;
+using trabalho2.Domain.Usuarios.Dtos;
+using trabalho2.Exceptions;
 using trabalho2.Repositories;
 
 namespace trabalho2.Services
@@ -18,8 +19,14 @@ namespace trabalho2.Services
 
         public async Task<User> RetornaUsuario(string id)
         {
-            var users = await _repository.RetornarTodosUsuarios();
-            return users.FirstOrDefault(u => u.Id == id);
+            var user = await _repository.RetornaUsuarioPorId(id);
+
+            if (user == null)
+            {
+                throw new BusinessException("Usuário não encontrado");
+            }
+
+            return user;
         }
 
         public async Task<List<User>> RetornaTodosUsuarios()
@@ -27,15 +34,29 @@ namespace trabalho2.Services
             return await _repository.RetornarTodosUsuarios();
         }
 
-        public async Task<List<User?>> RetornaUsuariosAtivos()
+        public async Task<List<User>> RetornaUsuariosAtivos()
         {
             var users = await _repository.RetornarTodosUsuarios();
-
             return users.Where(u => u.Situacao == "A").ToList();
         }
 
         public async Task<User> CriarUsuario(User user)
         {
+            if (user == null)
+                throw new BusinessException("Usuário inválido");
+
+            if (string.IsNullOrWhiteSpace(user.Email))
+                throw new BusinessException("Email é obrigatório");
+
+            if (string.IsNullOrWhiteSpace(user.Usuario))
+                throw new BusinessException("Usuário é obrigatório");
+
+            var existe = (await _repository.RetornarTodosUsuarios())
+                .Any(u => u.Email == user.Email);
+
+            if (existe)
+                throw new BusinessException("Já existe um usuário com esse email");
+
             user.Id = Guid.NewGuid().ToString();
             user.DataCadastro = DateTime.Now;
             user.Senha = BCrypt.Net.BCrypt.HashPassword(user.Senha);
@@ -46,30 +67,28 @@ namespace trabalho2.Services
 
         public async Task<User?> AlterarSituacaoUsuario(string id) // soft delete
         {
-            var user = await _repository.RetornaUsuario(id);
+            var user = await _repository.RetornaUsuarioPorId(id);
 
             if (user == null)
-            {
-                return null;
-            }
+                throw new BusinessException("Usuário não encontrado");
 
-            var changes = new Dictionary<string, string>();
-            changes.Add("Situacao", user.Situacao);
+            var valoresAlterados = new Dictionary<string, string>();
+            valoresAlterados.Add("Situacao", user.Situacao);
 
             user.Situacao = user.Situacao == "A" ? "I" : "A";
 
             await _repository.Salvar();
-            await _logService.SalvarLogs(user.Id, changes, "admin");
+            await _logService.SalvarLogs(user.Id, valoresAlterados, "admin");
 
             return user;
         }
 
         public async Task<User?> AtualizarUsuario(string id, UpdateUserRequest request, string userAlteracao)
         {
-            var user = await _repository.RetornaUsuario(id);
+            var user = await _repository.RetornaUsuarioPorId(id);
 
             if (user == null)
-                return null;
+                throw new BusinessException("Usuário não encontrado");
 
             var valoresAlterados = new Dictionary<string, string>();
 
@@ -100,17 +119,5 @@ namespace trabalho2.Services
 
             return user;
         }
-
-        //public async Task<bool> DeletarUsuario(string id)
-        //{
-        //    var user = await _repository.RetornaUsuario(id);
-
-        //    if (user == null)
-        //    {
-        //        return false;
-        //    }
-
-        //    return await _repository.DeletarUsuario(user);
-        //}
     }
 }

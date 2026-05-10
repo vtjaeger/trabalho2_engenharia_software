@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using trabalho2.Data;
-using trabalho2.Domain;
+using trabalho2.Domain.Usuarios;
 
 namespace trabalho2.Repositories
 {
@@ -13,13 +13,13 @@ namespace trabalho2.Repositories
             _context = context;
         }
 
-        public async Task AddAsync(UserLog log)
+        public async Task AddAsync(UsuarioLog log)
         {
             _context.UserLogs.Add(log);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<UserLog>> GetAllAsync()
+        public async Task<List<UsuarioLog>> GetAllAsync()
         {
             return await _context.UserLogs.ToListAsync();
         }

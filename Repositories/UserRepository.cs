@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using trabalho2.Data;
-using trabalho2.Domain;
-using trabalho2.Domain.Dtos.Request;
+using trabalho2.Domain.Usuarios;
 
 namespace trabalho2.Repositories
 {
@@ -13,9 +12,15 @@ namespace trabalho2.Repositories
         {
             _context = context;
         }
-        public async Task<User?> RetornaUsuario(string id)
+
+        public async Task<User?> RetornaUsuarioPorId(string id)
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public async Task<User?> RetornaUsuarioPorUsuario(string usuario)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Usuario == usuario);
         }
 
         public async Task Salvar()

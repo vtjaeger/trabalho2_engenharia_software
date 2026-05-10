@@ -148,3 +148,4 @@ C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net9.0\trabalho2.genr
 C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net9.0\ref\trabalho2.dll
 C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net9.0\trabalho2.sourcelink.json

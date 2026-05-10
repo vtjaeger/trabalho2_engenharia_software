@@ -1,6 +1,9 @@
-﻿namespace trabalho2.Domain
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace trabalho2.Domain.Usuarios
 {
-    public class UserLog
+    [Table("usuarios_logs")]
+    public class UsuarioLog
     {
         public string Id { get; set; }
         public string UsuarioId { get; set; }

@@ -10,10 +10,12 @@ namespace trabalho2.Extensions
             // repositories
             services.AddScoped<UserRepository>();
             services.AddScoped<UserLogRepository>();
+            services.AddScoped<TarefaRepository>();
 
             // services
             services.AddScoped<UserService>();
             services.AddScoped<UserLogService>();
+            services.AddScoped<TarefaService>();
 
             return services;
         }

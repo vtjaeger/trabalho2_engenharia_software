@@ -1,5 +1,5 @@
 ﻿using System.Text.Json;
-using trabalho2.Domain;
+using trabalho2.Domain.Usuarios;
 using trabalho2.Repositories;
 
 namespace trabalho2.Services
@@ -17,7 +17,7 @@ namespace trabalho2.Services
         {
             foreach (var item in valoresAlterados)
             {
-                var log = new UserLog
+                var log = new UsuarioLog
                 {
                     Id = Guid.NewGuid().ToString(),
                     UsuarioId = userId,
@@ -31,7 +31,7 @@ namespace trabalho2.Services
             }
         }
 
-        public async Task<List<UserLog>> GetLogs()
+        public async Task<List<UsuarioLog>> RetornarTodosLogs()
         {
             return await _repository.GetAllAsync();
         }

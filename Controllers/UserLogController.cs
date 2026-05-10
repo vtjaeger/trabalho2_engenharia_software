@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using trabalho2.Domain;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using trabalho2.Domain.Usuarios;
 using trabalho2.Services;
 
 namespace trabalho2.Controllers
 {
     [ApiController]
     [Route("logs")]
-
+    [Authorize]
     public class UserLogController : ControllerBase
     {
         private readonly UserLogService _service;
@@ -17,9 +18,10 @@ namespace trabalho2.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<UserLog>>> GetAll()
+        [Authorize(Roles = "ADMIN")]
+        public async Task<ActionResult<List<UsuarioLog>>> RetornaTodosLogs()
         {
-            var logs = await _service.GetLogs();
+            var logs = await _service.RetornarTodosLogs();
             return Ok(logs);
         }
     }

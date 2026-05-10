@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using MySql.EntityFrameworkCore.Extensions;
 using System.Text;
 using trabalho2.Data;
+using trabalho2.Exceptions;
 using trabalho2.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -125,6 +126,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 

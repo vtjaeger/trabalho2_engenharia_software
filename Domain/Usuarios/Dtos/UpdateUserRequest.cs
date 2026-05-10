@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace trabalho2.Domain.Dtos.Request
+namespace trabalho2.Domain.Usuarios.Dtos
 {
     public class UpdateUserRequest
     {

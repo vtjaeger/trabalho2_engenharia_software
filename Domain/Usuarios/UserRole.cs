@@ -1,4 +1,4 @@
-﻿namespace trabalho2.Domain
+﻿namespace trabalho2.Domain.Usuarios
 {
     public enum UserRole
     {

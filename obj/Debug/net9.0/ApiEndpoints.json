@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[trabalho2.Domain.User, trabalho2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[trabalho2.Domain.Usuarios.User, trabalho2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -29,7 +29,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "trabalho2.Domain.Dtos.Request.LoginRequest",
+        "Type": "trabalho2.Domain.Usuarios.Dtos.LoginRequest",
         "IsRequired": true
       }
     ],
@@ -47,7 +47,7 @@
   },
   {
     "ContainingType": "trabalho2.Controllers.UserLogController",
-    "Method": "GetAll",
+    "Method": "RetornaTodosLogs",
     "RelativePath": "logs",
     "HttpMethod": "GET",
     "IsController": true,
@@ -55,7 +55,146 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[trabalho2.Domain.UserLog, trabalho2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[trabalho2.Domain.Usuarios.UsuarioLog, trabalho2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "trabalho2.Controllers.TarefaController",
+    "Method": "CriarTarefa",
+    "RelativePath": "tasks",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "trabalho2.Domain.Tarefas.Dtos.CreateTarefaRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "trabalho2.Domain.Tarefas.Tarefa",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "trabalho2.Controllers.TarefaController",
+    "Method": "RetornaPorId",
+    "RelativePath": "tasks/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "trabalho2.Domain.Tarefas.Tarefa",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "trabalho2.Controllers.TarefaController",
+    "Method": "Excluir",
+    "RelativePath": "tasks/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "trabalho2.Controllers.TarefaController",
+    "Method": "AtualizarSituacao",
+    "RelativePath": "tasks/{id}/situacao",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "novaSituacao",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "trabalho2.Domain.Tarefas.Tarefa",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "trabalho2.Controllers.TarefaController",
+    "Method": "RetornaMinhasTarefas",
+    "RelativePath": "tasks/minhas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[trabalho2.Domain.Tarefas.Tarefa, trabalho2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "trabalho2.Controllers.TarefaController",
+    "Method": "RetornaTodasTarefas",
+    "RelativePath": "tasks/todas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[trabalho2.Domain.Tarefas.Tarefa, trabalho2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -67,7 +206,7 @@
   },
   {
     "ContainingType": "trabalho2.Controllers.UsersController",
-    "Method": "GetAll",
+    "Method": "RetornarTodos",
     "RelativePath": "users",
     "HttpMethod": "GET",
     "IsController": true,
@@ -75,7 +214,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[trabalho2.Domain.User, trabalho2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[trabalho2.Domain.Usuarios.User, trabalho2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -95,13 +234,13 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "trabalho2.Domain.Dtos.Request.CreateUserRequest",
+        "Type": "trabalho2.Domain.Usuarios.Dtos.CreateUserRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "trabalho2.Domain.User",
+        "Type": "trabalho2.Domain.Usuarios.User",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -113,7 +252,7 @@
   },
   {
     "ContainingType": "trabalho2.Controllers.UsersController",
-    "Method": "GetById",
+    "Method": "RetornarPorId",
     "RelativePath": "users/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -127,7 +266,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "trabalho2.Domain.User",
+        "Type": "trabalho2.Domain.Usuarios.User",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -152,13 +291,13 @@
       },
       {
         "Name": "request",
-        "Type": "trabalho2.Domain.Dtos.Request.UpdateUserRequest",
+        "Type": "trabalho2.Domain.Usuarios.Dtos.UpdateUserRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "trabalho2.Domain.User",
+        "Type": "trabalho2.Domain.Usuarios.User",
         "MediaTypes": [
           "text/plain",
           "application/json",

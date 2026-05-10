@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using trabalho2.Domain.Dtos.Request;
+using trabalho2.Domain.Usuarios.Dtos;
 using trabalho2.Repositories;
 
 namespace trabalho2.Controllers

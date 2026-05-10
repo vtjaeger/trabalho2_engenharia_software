@@ -3,32 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|c:\\users\\vinic\\desktop\\unisinos\\trabt2\\trabalho2\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|solutionrelative:controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|c:\\users\\vinic\\desktop\\unisinos\\trabt2\\trabalho2\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|c:\\users\\vinic\\desktop\\unisinos\\trabt2\\trabalho2\\domain\\userlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|solutionrelative:domain\\userlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|c:\\users\\vinic\\desktop\\unisinos\\trabt2\\trabalho2\\domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|solutionrelative:domain\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|c:\\users\\vinic\\desktop\\unisinos\\trabt2\\trabalho2\\domain\\dtos\\request\\updateuserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|solutionrelative:domain\\dtos\\request\\updateuserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|c:\\users\\vinic\\desktop\\unisinos\\trabt2\\trabalho2\\domain\\dtos\\request\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|solutionrelative:domain\\dtos\\request\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|c:\\users\\vinic\\desktop\\unisinos\\trabt2\\trabalho2\\domain\\dtos\\request\\createuserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|solutionrelative:domain\\dtos\\request\\createuserrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|c:\\users\\vinic\\desktop\\unisinos\\trabt2\\trabalho2\\repositories\\tarefarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51E04367-A97C-2D35-0B26-89B605D3C8CD}|trabalho2.csproj|solutionrelative:repositories\\tarefarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,98 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Domain\\User.cs",
-              "RelativeDocumentMoniker": "Domain\\User.cs",
-              "ToolTip": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Domain\\User.cs",
-              "RelativeToolTip": "Domain\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-09T18:54:02.284Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserLog.cs",
-              "DocumentMoniker": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Domain\\UserLog.cs",
-              "RelativeDocumentMoniker": "Domain\\UserLog.cs",
-              "ToolTip": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Domain\\UserLog.cs",
-              "RelativeToolTip": "Domain\\UserLog.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-09T19:42:01.381Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAiwC0AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-09T19:26:39.451Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "Controllers\\UsersController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAwwDgAAAANAAAAAAAAAA==",
+              "Title": "TarefaRepository.cs",
+              "DocumentMoniker": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Repositories\\TarefaRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\TarefaRepository.cs",
+              "ToolTip": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Repositories\\TarefaRepository.cs",
+              "RelativeToolTip": "Repositories\\TarefaRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-09T19:25:13.18Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UpdateUserRequest.cs",
-              "DocumentMoniker": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Domain\\Dtos\\Request\\UpdateUserRequest.cs",
-              "RelativeDocumentMoniker": "Domain\\Dtos\\Request\\UpdateUserRequest.cs",
-              "ToolTip": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Domain\\Dtos\\Request\\UpdateUserRequest.cs",
-              "RelativeToolTip": "Domain\\Dtos\\Request\\UpdateUserRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-09T19:25:03.792Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "LoginRequest.cs",
-              "DocumentMoniker": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Domain\\Dtos\\Request\\LoginRequest.cs",
-              "RelativeDocumentMoniker": "Domain\\Dtos\\Request\\LoginRequest.cs",
-              "ToolTip": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Domain\\Dtos\\Request\\LoginRequest.cs",
-              "RelativeToolTip": "Domain\\Dtos\\Request\\LoginRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-09T19:24:56.935Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CreateUserRequest.cs",
-              "DocumentMoniker": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Domain\\Dtos\\Request\\CreateUserRequest.cs",
-              "RelativeDocumentMoniker": "Domain\\Dtos\\Request\\CreateUserRequest.cs",
-              "ToolTip": "C:\\Users\\vinic\\Desktop\\unisinos\\trabt2\\trabalho2\\Domain\\Dtos\\Request\\CreateUserRequest.cs",
-              "RelativeToolTip": "Domain\\Dtos\\Request\\CreateUserRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-09T19:24:36.192Z",
+              "WhenOpened": "2026-05-10T02:32:33.363Z",
               "EditorCaption": ""
             }
           ]
