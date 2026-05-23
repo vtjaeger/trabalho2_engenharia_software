@@ -1,27 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using trabalho2.Data;
+﻿using trabalho2.Data;
 using trabalho2.Domain.Usuarios;
+using trabalho2.Repositories.Interfaces;
 
 namespace trabalho2.Repositories
 {
-    public class UserLogRepository
+    public class UserLogRepository : Repository<UsuarioLog>
     {
-        private readonly ApplicationDbContext _context;
-
         public UserLogRepository(ApplicationDbContext context)
+            : base(context)
         {
-            _context = context;
-        }
-
-        public async Task AddAsync(UsuarioLog log)
-        {
-            _context.UserLogs.Add(log);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<List<UsuarioLog>> GetAllAsync()
-        {
-            return await _context.UserLogs.ToListAsync();
         }
     }
 }

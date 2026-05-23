@@ -22,38 +22,47 @@ namespace trabalho2.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> Login(LoginRequest request)
         {
-            var users =
-                await _repository.RetornarTodosUsuarios();
+            var user = await _repository
+                .RetornaUsuarioPorUsuario(request.Usuario);
 
-            var user = users.FirstOrDefault(u => u.Email == request.Usuario && u.Situacao == "A");
-
-            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Senha, user.Senha))
+            if (user == null || user.Situacao == "I")
             {
-                return Unauthorized("Usuário ou senha inválidos" );
+                return Unauthorized("Usuário ou senha inválidos");
+            }
+
+            if (!BCrypt.Net.BCrypt.Verify(request.Senha, user.Senha))
+            {
+                return Unauthorized("Usuário ou senha inválidos");
             }
 
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            var key = Encoding.UTF8.GetBytes("super_secret_key_123456789_super_secret_key_123456789");
+            var key = Encoding.UTF8.GetBytes(
+                "super_secret_key_123456789_super_secret_key_123456789");
 
-            var token = new JwtSecurityToken(claims: new[]
-            {
-                new Claim("id", user.Id),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.Usuario),
-                new Claim(ClaimTypes.Role, user.Role.ToString())
-            }, 
-            expires: DateTime.UtcNow.AddHours(2),
+            var token = new JwtSecurityToken(
+                claims: new[]
+                {
+            new Claim("id", user.Id),
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Name, user.Usuario),
+            new Claim(ClaimTypes.Role, user.Role.ToString())
+                },
 
-            signingCredentials: new SigningCredentials(
-                new SymmetricSecurityKey(key),
-                SecurityAlgorithms.HmacSha256
+                expires: DateTime.UtcNow.AddHours(2),
+
+                signingCredentials: new SigningCredentials(
+                    new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256
                 )
             );
 
             var tokenString = tokenHandler.WriteToken(token);
 
-            return Ok(new { token = tokenString});
+            return Ok(new
+            {
+                token = tokenString
+            });
         }
 
         [HttpPost("logout")]

@@ -1,8 +1,0 @@
-C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net10.0\trabalho2.csproj.AssemblyReference.cache
-C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net10.0\rpswa.dswa.cache.json
-C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net10.0\trabalho2.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net10.0\trabalho2.AssemblyInfoInputs.cache
-C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net10.0\trabalho2.AssemblyInfo.cs
-C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net10.0\trabalho2.csproj.CoreCompileInputs.cache
-C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net10.0\trabalho2.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\vinic\Desktop\unisinos\trabt2\trabalho2\obj\Debug\net10.0\trabalho2.MvcApplicationPartsAssemblyInfo.cache

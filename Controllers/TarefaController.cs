@@ -32,25 +32,24 @@ namespace trabalho2.Controllers
             return Ok(task);
         }
 
-        [HttpGet("todas")]
-        [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<List<Tarefa>>> RetornaTodasTarefas()
-        {
-            var tasks = await _service.RetornaTodas();
-            return Ok(tasks);
-        }
-
-        [HttpGet("minhas")]
-        public async Task<ActionResult<List<Tarefa>>> RetornaMinhasTarefas()
+        [HttpGet]
+        public async Task<ActionResult<List<Tarefa>>> RetornaTarefas()
         {
             var usuario = User.FindFirst(ClaimTypes.Name)?.Value;
 
             if (string.IsNullOrEmpty(usuario))
                 return Unauthorized();
 
-            var tasks = await _service.RetornaPorUsuario(usuario);
+            if (User.IsInRole("ADMIN"))
+            {
+                var todas = await _service.RetornaTodas();
 
-            return Ok(tasks);
+                return Ok(todas);
+            }
+
+            var minhas = await _service.RetornaPorUsuario(usuario);
+
+            return Ok(minhas);
         }
 
         [HttpPost]

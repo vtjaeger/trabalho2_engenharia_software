@@ -42,34 +42,6 @@ builder.Services
         options.SaveToken = true;
 
         options.Events = new JwtBearerEvents
-{
-    OnAuthenticationFailed = context =>
-    {
-        Console.WriteLine(context.Exception.ToString());
-
-        return Task.CompletedTask;
-    }
-};
-        options.TokenValidationParameters =
-    new TokenValidationParameters
-    {
-        ValidateIssuer = false,
-        ValidateAudience = false,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-
-        RequireExpirationTime = true,
-        RequireSignedTokens = true,
-
-        IssuerSigningKey =
-            new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(key)
-            ),
-
-        ClockSkew = TimeSpan.Zero
-    };
-
-        options.Events = new JwtBearerEvents
         {
             OnAuthenticationFailed = context =>
             {
@@ -78,7 +50,26 @@ builder.Services
                 return Task.CompletedTask;
             }
         };
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+
+            RequireExpirationTime = true,
+            RequireSignedTokens = true,
+
+            IssuerSigningKey =
+            new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(key)
+            ),
+
+            ClockSkew = TimeSpan.Zero
+        };
     });
+
 #endregion
 
 #region Swagger
@@ -94,7 +85,7 @@ builder.Services.AddSwaggerGen(options =>
             Scheme = "bearer",
             BearerFormat = "JWT",
             In = ParameterLocation.Header,
-            Description = "Cole apenas o token JWT"
+            Description = "Digite seu token:"
         });
 
     options.AddSecurityRequirement(
@@ -121,11 +112,11 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI();
+//}
 
 app.UseMiddleware<ExceptionMiddleware>();
 

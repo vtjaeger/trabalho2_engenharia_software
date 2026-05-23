@@ -1,5 +1,4 @@
-﻿using System.Text.Json;
-using trabalho2.Domain.Usuarios;
+﻿using trabalho2.Domain.Usuarios;
 using trabalho2.Repositories;
 
 namespace trabalho2.Services
@@ -13,7 +12,7 @@ namespace trabalho2.Services
             _repository = repository;
         }
 
-        public async Task SalvarLogs(string userId, Dictionary<string, string> valoresAlterados, string? userAlteracao)
+        public async Task SalvarLogs(string userId, Dictionary<string, string> valoresAlterados, string userAlteracao)
         {
             foreach (var item in valoresAlterados)
             {
@@ -27,13 +26,13 @@ namespace trabalho2.Services
                     DataHora = DateTime.Now
                 };
 
-                await _repository.AddAsync(log);
+                await _repository.Create(log);
             }
         }
 
         public async Task<List<UsuarioLog>> RetornarTodosLogs()
         {
-            return await _repository.GetAllAsync();
+            return await _repository.GetAll();
         }
     }
 }

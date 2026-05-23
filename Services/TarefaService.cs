@@ -18,13 +18,12 @@ namespace trabalho2.Services
 
         public async Task<Tarefa?> RetornaTarefa(string id)
         {
-            return await _repository.RetornaTarefaPorId(id);
-
+            return await _repository.GetById(id);
         }
 
         public async Task<List<Tarefa>> RetornaTodas()
         {
-            return await _repository.RetornaTodasTarefas();
+            return await _repository.GetAll();
         }
 
         public async Task<Tarefa> CriarTarefa(CreateTarefaRequest request)
@@ -47,7 +46,7 @@ namespace trabalho2.Services
                 InicioDataHora = DateTime.Now
             };
 
-            return await _repository.CriarTarefa(task);
+            return await _repository.Create(task);
         }
 
         public async Task<List<Tarefa>> RetornaPorUsuario(string usuario)
@@ -57,32 +56,34 @@ namespace trabalho2.Services
 
         public async Task<Tarefa?> AtualizarSituacao(string id, TarefaSituacaoEnum novaSituacao)
         {
-            var tarefa = await _repository.RetornaTarefaPorId(id);
+            var tarefa = await _repository.GetById(id);
 
             if (tarefa == null)
                 return null;
 
             var atual = tarefa.Situacao;
 
-            bool valido = (atual == TarefaSituacaoEnum.NOVA && novaSituacao == TarefaSituacaoEnum.LIBERADO_DESENVOLVIMENTO) ||
-                (atual == TarefaSituacaoEnum.LIBERADO_DESENVOLVIMENTO && novaSituacao == TarefaSituacaoEnum.EM_DESENVOLVIMENTO) ||
-                (atual == TarefaSituacaoEnum.EM_DESENVOLVIMENTO && novaSituacao == TarefaSituacaoEnum.EM_TESTE) ||
-                (atual == TarefaSituacaoEnum.EM_TESTE && novaSituacao == TarefaSituacaoEnum.CONCLUIDA);
+            bool valido = (atual == TarefaSituacaoEnum.NOVA && novaSituacao == TarefaSituacaoEnum.LIBERADO_DESENVOLVIMENTO) || (atual == TarefaSituacaoEnum.LIBERADO_DESENVOLVIMENTO && novaSituacao == TarefaSituacaoEnum.EM_DESENVOLVIMENTO) || (atual == TarefaSituacaoEnum.EM_DESENVOLVIMENTO && novaSituacao == TarefaSituacaoEnum.EM_TESTE) ||                 (atual == TarefaSituacaoEnum.EM_TESTE && novaSituacao == TarefaSituacaoEnum.CONCLUIDA);
 
             if (!valido)
-                throw new Exception($"Transição inválida: {atual} → {novaSituacao}");
+            {
+                throw new Exception(
+                    $"Transição inválida: {atual} → {novaSituacao}");
+            }
 
             tarefa.Situacao = novaSituacao;
 
             if (novaSituacao == TarefaSituacaoEnum.CONCLUIDA)
+            {
                 tarefa.FimDataHora = DateTime.Now;
+            }
 
-            return await _repository.AtualizarTarefa(tarefa);
+            return await _repository.Update(tarefa);
         }
 
         public async Task<bool> Delete(string id)
         {
-            return await _repository.DeletarTarefa(id);
+            return await _repository.Delete(id);
         }
     }
 }
