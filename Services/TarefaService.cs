@@ -2,15 +2,16 @@
 using trabalho2.Domain.Tarefas.Dtos;
 using trabalho2.Exceptions;
 using trabalho2.Repositories;
+using trabalho2.Repositories.Interfaces;
 
 namespace trabalho2.Services
 {
     public class TarefaService
     {
-        private readonly TarefaRepository _repository;
+        private readonly ITarefaRepository _repository;
         private readonly UserRepository _userRepository;
 
-        public TarefaService(TarefaRepository repository, UserRepository userRepository)
+        public TarefaService(ITarefaRepository repository, UserRepository userRepository)
         {
             _repository = repository;
             _userRepository = userRepository;
@@ -63,20 +64,18 @@ namespace trabalho2.Services
 
             var atual = tarefa.Situacao;
 
-            bool valido = (atual == TarefaSituacaoEnum.NOVA && novaSituacao == TarefaSituacaoEnum.LIBERADO_DESENVOLVIMENTO) || (atual == TarefaSituacaoEnum.LIBERADO_DESENVOLVIMENTO && novaSituacao == TarefaSituacaoEnum.EM_DESENVOLVIMENTO) || (atual == TarefaSituacaoEnum.EM_DESENVOLVIMENTO && novaSituacao == TarefaSituacaoEnum.EM_TESTE) ||                 (atual == TarefaSituacaoEnum.EM_TESTE && novaSituacao == TarefaSituacaoEnum.CONCLUIDA);
+            bool valido = (atual == TarefaSituacaoEnum.NOVA && novaSituacao == TarefaSituacaoEnum.LIBERADO_DESENVOLVIMENTO) ||
+                (atual == TarefaSituacaoEnum.LIBERADO_DESENVOLVIMENTO && novaSituacao == TarefaSituacaoEnum.EM_DESENVOLVIMENTO) ||
+                (atual == TarefaSituacaoEnum.EM_DESENVOLVIMENTO && novaSituacao == TarefaSituacaoEnum.EM_TESTE) ||
+                (atual == TarefaSituacaoEnum.EM_TESTE && novaSituacao == TarefaSituacaoEnum.CONCLUIDA);
 
             if (!valido)
-            {
-                throw new Exception(
-                    $"Transição inválida: {atual} → {novaSituacao}");
-            }
+                throw new Exception($"Transição inválida: {atual} → {novaSituacao}");
 
             tarefa.Situacao = novaSituacao;
 
             if (novaSituacao == TarefaSituacaoEnum.CONCLUIDA)
-            {
                 tarefa.FimDataHora = DateTime.Now;
-            }
 
             return await _repository.Update(tarefa);
         }
@@ -84,6 +83,11 @@ namespace trabalho2.Services
         public async Task<bool> Delete(string id)
         {
             return await _repository.Delete(id);
+        }
+
+        public async Task<List<Tarefa>> Filtrar(string? status, string? usuario, DateTime? inicio, DateTime? fim)
+        {
+            return await _repository.Filtrar(status, usuario, inicio, fim);
         }
     }
 }

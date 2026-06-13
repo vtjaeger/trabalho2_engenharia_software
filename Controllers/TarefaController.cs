@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using trabalho2.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using trabalho2.Domain.Tarefas;
@@ -40,7 +38,7 @@ namespace trabalho2.Controllers
             if (string.IsNullOrEmpty(usuario))
                 return Unauthorized();
 
-            if (User.IsInRole("ADMIN"))
+            if (User.IsInRole("ADMIN") || User.IsInRole("PROFESSOR"))
             {
                 var todas = await _service.RetornaTodas();
 
@@ -53,7 +51,7 @@ namespace trabalho2.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,PROFESSOR")]
         public async Task<ActionResult<Tarefa>> CriarTarefa(CreateTarefaRequest request)
         {
             var task = await _service.CriarTarefa(request);
@@ -61,18 +59,17 @@ namespace trabalho2.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN,PROFESSOR")]
         public async Task<ActionResult> Excluir(string id)
         {
-            var ok = await _service.Delete(id);
-
-            if (!ok)
+            if (!await _service.Delete(id))
                 return NotFound();
 
             return NoContent();
         }
 
         [HttpPatch("{id}/situacao")]
+        [Authorize(Roles = "ADMIN,PROFESSOR")]
         public async Task<ActionResult<Tarefa>> AtualizarSituacao(string id, TarefaSituacaoEnum novaSituacao)
         {
             try
@@ -88,6 +85,13 @@ namespace trabalho2.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("filter")]
+        public async Task<ActionResult<List<Tarefa>>> Filtrar([FromQuery] string? status, [FromQuery] string? usuario, [FromQuery] DateTime? inicio, [FromQuery] DateTime? fim)
+        {
+            var tarefas = await _service.Filtrar(status, usuario, inicio, fim);
+            return Ok(tarefas);
         }
     }
 }

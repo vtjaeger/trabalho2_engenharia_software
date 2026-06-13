@@ -2,7 +2,7 @@
 using trabalho2.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace trabalho2.Repositories.Interfaces
+namespace trabalho2.Repositories.Interfaces.Base
 {
     public class Repository<T> : IRepository<T> where T : class
     {

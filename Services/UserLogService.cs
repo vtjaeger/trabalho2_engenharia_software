@@ -1,13 +1,13 @@
 ﻿using trabalho2.Domain.Usuarios;
-using trabalho2.Repositories;
+using trabalho2.Repositories.Interfaces;
 
 namespace trabalho2.Services
 {
     public class UserLogService
     {
-        private readonly UserLogRepository _repository;
+        private readonly IUserLogRepository _repository;
 
-        public UserLogService(UserLogRepository repository)
+        public UserLogService(IUserLogRepository repository)
         {
             _repository = repository;
         }

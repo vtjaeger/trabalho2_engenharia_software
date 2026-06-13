@@ -2,15 +2,16 @@
 using trabalho2.Domain.Usuarios.Dtos;
 using trabalho2.Exceptions;
 using trabalho2.Repositories;
+using trabalho2.Repositories.Interfaces;
 
 namespace trabalho2.Services
 {
     public class UserService
     {
-        private readonly UserRepository _repository;
+        private readonly IUserRepository _repository;
         private readonly UserLogService _logService;
 
-        public UserService(UserRepository repository, UserLogService logService)
+        public UserService(IUserRepository repository, UserLogService logService)
         {
             _repository = repository;
             _logService = logService;
@@ -37,9 +38,7 @@ namespace trabalho2.Services
         {
             var users = await _repository.GetAll();
 
-            return users
-                .Where(u => u.Situacao == "A")
-                .ToList();
+            return users.Where(u => u.Situacao == "A").ToList();
         }
 
         public async Task<User> CriarUsuario(User user)
@@ -68,7 +67,8 @@ namespace trabalho2.Services
             return await _repository.Create(user);
         }
 
-        public async Task<User?> AlterarSituacaoUsuario(string id)
+        [Obsolete]
+        public async Task<User?> AlterarSituacaoUsuario(string id, string usuarioAlteracao)
         {
             var user = await _repository.GetById(id);
 
@@ -79,25 +79,16 @@ namespace trabalho2.Services
 
             valoresAlterados.Add("Situacao", user.Situacao);
 
-            user.Situacao = user.Situacao == "A"
-                ? "I"
-                : "A";
+            user.Situacao = user.Situacao == "A" ? "I" : "A";
 
             await _repository.Update(user);
 
-            await _logService.SalvarLogs(
-                user.Id,
-                valoresAlterados,
-                "admin"
-            );
+            await _logService.SalvarLogs(user.Id, valoresAlterados, usuarioAlteracao);
 
             return user;
         }
 
-        public async Task<User?> AtualizarUsuario(
-            string id,
-            UpdateUserRequest request,
-            string userAlteracao)
+        public async Task<User?> AtualizarUsuario(string id, UpdateUserRequest request, string userAlteracao)
         {
             var user = await _repository.GetById(id);
 
@@ -106,24 +97,21 @@ namespace trabalho2.Services
 
             var valoresAlterados = new Dictionary<string, string>();
 
-            if (!string.IsNullOrWhiteSpace(request.Usuario)
-                && request.Usuario != user.Nome)
+            if (!string.IsNullOrWhiteSpace(request.Usuario) && request.Usuario != user.Nome)
             {
                 valoresAlterados.Add("Name", user.Nome ?? "");
 
                 user.Nome = request.Usuario;
             }
 
-            if (!string.IsNullOrWhiteSpace(request.Email)
-                && request.Email != user.Email)
+            if (!string.IsNullOrWhiteSpace(request.Email) && request.Email != user.Email)
             {
                 valoresAlterados.Add("Email", user.Email ?? "");
 
                 user.Email = request.Email;
             }
 
-            if (request.Role.HasValue
-                && request.Role.Value != user.Role)
+            if (request.Role.HasValue && request.Role.Value != user.Role)
             {
                 valoresAlterados.Add("Role", user.Role.ToString());
 
@@ -134,10 +122,7 @@ namespace trabalho2.Services
 
             if (valoresAlterados.Any())
             {
-                await _logService.SalvarLogs(
-                    user.Id,
-                    valoresAlterados,
-                    userAlteracao
+                await _logService.SalvarLogs(user.Id, valoresAlterados, userAlteracao
                 );
             }
 

@@ -20,7 +20,7 @@ namespace trabalho2.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN, PROFESSOR")]
         public async Task<ActionResult<List<User>>> RetornarTodos()
         {
             var users = await _service.RetornaTodosUsuarios();
@@ -43,15 +43,15 @@ namespace trabalho2.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "ADMIN")]
-        public async Task<ActionResult<User>> CriarUsuario(CreateUserRequest dto)
+        [Authorize(Roles = "ADMIN,PROFESSOR")]
+        public async Task<ActionResult<User>> CriarUsuario([FromBody] CreateUserRequest dto)
         {
             var user = new User
             {
                 Usuario = dto.Usuario,
                 Nome = dto.Nome,
                 Email = dto.Email,
-                Role = UserRole.USER,
+                Role = UserRole.ALUNO,
                 Senha = dto.Senha
             };
 
