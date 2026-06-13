@@ -9,9 +9,9 @@ namespace trabalho2.Services
     public class TarefaService
     {
         private readonly ITarefaRepository _repository;
-        private readonly UserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
-        public TarefaService(ITarefaRepository repository, UserRepository userRepository)
+        public TarefaService(ITarefaRepository repository, IUserRepository userRepository)
         {
             _repository = repository;
             _userRepository = userRepository;

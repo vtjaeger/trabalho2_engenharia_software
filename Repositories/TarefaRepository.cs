@@ -24,29 +24,27 @@ namespace trabalho2.Repositories
 
         public async Task<List<Tarefa>> Filtrar(string? status, string? usuario, DateTime? inicio, DateTime? fim)
         {
-            var query = _context.Set<Tarefa>().AsQueryable();
-
-            if (!string.IsNullOrWhiteSpace(status))
-            {
-                if (Enum.TryParse<TarefaSituacaoEnum>(status, true, out var situacao)) // transforma em string 
-                {
-                    query = query.Where(t => t.Situacao == situacao);
-                }
-            }
+            var query = _context.Tarefas.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(usuario))
             {
-                query = query.Where(t => t.Usuario == usuario);
+                query = query.Where(x => x.Usuario == usuario);
+            }
+
+            if (!string.IsNullOrWhiteSpace(status) &&
+                Enum.TryParse<TarefaSituacaoEnum>(status, out var statusEnum))
+            {
+                query = query.Where(x => x.Situacao == statusEnum);
             }
 
             if (inicio.HasValue)
             {
-                query = query.Where(t => t.InicioDataHora >= inicio.Value);
+                query = query.Where(x => x.InicioDataHora >= inicio.Value);
             }
 
             if (fim.HasValue)
             {
-                query = query.Where(t => t.InicioDataHora <= fim.Value);
+                query = query.Where(x => x.FimDataHora <= fim.Value);
             }
 
             return await query.ToListAsync();

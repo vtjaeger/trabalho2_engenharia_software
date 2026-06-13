@@ -44,13 +44,16 @@ namespace trabalho2.Services
         public async Task<User> CriarUsuario(User user)
         {
             if (user == null)
+                throw new BusinessException("Usuário não pode ser nulo");
+
+            if (string.IsNullOrWhiteSpace(user.Nome))
+                throw new BusinessException("Nome inválido");
+
+            if (string.IsNullOrWhiteSpace(user.Usuario))
                 throw new BusinessException("Usuário inválido");
 
             if (string.IsNullOrWhiteSpace(user.Email))
-                throw new BusinessException("Email é obrigatório");
-
-            if (string.IsNullOrWhiteSpace(user.Usuario))
-                throw new BusinessException("Usuário é obrigatório");
+                throw new BusinessException("Email inválido");
 
             var users = await _repository.GetAll();
 
