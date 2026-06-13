@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using MySql.EntityFrameworkCore.Extensions;
 using System.Text;
 using trabalho2.Data;
 using trabalho2.Exceptions;
@@ -16,7 +15,10 @@ var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySQL(connectionString)
+    options.UseMySql(
+        connectionString,
+        ServerVersion.AutoDetect(connectionString)
+    )
 );
 
 builder.Services.AddDependencies();
